@@ -1,4 +1,3 @@
-// 🔍 Part 1 error
 let userName = "Moroni";
 console.log(`Username: ${userName}`);
 userName = "Moronihah";
