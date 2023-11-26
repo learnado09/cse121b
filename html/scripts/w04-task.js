@@ -59,8 +59,8 @@ myProfile.placesLived.push(
 document.querySelector('#name').textContent = myProfile.name;
 
 /* Photo with attributes */
-document.getElementById("photo").src = `images/${myProfile.photo}`;
-document.getElementById("photo").alt = "Your Alt Text";
+document.getElementById('photo').src = `images/${myProfile.photo}`;
+document.getElementById('photo').alt = 'myProfile.name';
 /* Favorite Foods List*/
 const favoriteFoods = [ 
 'Roast Beef',
@@ -81,9 +81,9 @@ for (let i = 0; i < favoriteFoods.length; i++) {
 /* Hobbies List */
 const hobbies = [
 'Reading',
-'Watching Soccer', 
+'Waching Soccer', 
 'Playing Soccer',
-'Hiking',
+    'Hiking',
    
 ];
 const ul = document.getElementById("hobbies");
