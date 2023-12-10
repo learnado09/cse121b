@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Quote Generator with Nature Images</title>
+  <style>
+    /* Your existing styles remain unchanged */
+
+    #nature-image {
+      /* Remove 'display: none;' to display the image */
+    }
+  </style>
+</head>
+<body>
+  <div class="nature-image-container">
+    <div id="quote-container" style="background-image: url('');">
+      <img id="nature-image" src="" alt="Nature Image">
+      <div class="quote-overlay" id="quote-container-1">
+        <p id="quote-1"></p>
+      </div>
+    </div>
+  </div>
+
+  <button id="new-quote-btn" onclick="fetchQuotes()">New Quotes</button>
+
+  <script>
+    const quotes = [];
+
+    async function fetchQuotes() {
+      // Fetch a random quote
+      for (let i = 0; i < 2; i++) {
+        const quoteResponse = await fetch('https://api.quotable.io/random');
+        const quoteData = await quoteResponse.json();
+        document.getElementById(`quote-${i + 1}`).innerText = `${quoteData.content} - ${quoteData.author}`;
+        quotes[i] = quoteData;
+      }
+
+      // Fetch random nature images from Unsplash API
+      const imageResponses = await Promise.all([
+        fetch('https://source.unsplash.com/featured/?nature'),
+        fetch('https://source.unsplash.com/featured/?nature')
+      ]);
+
+      // Set the nature image as a background
+      const imageUrl = imageResponses[0].url; // Use the first image URL
+      document.getElementById('quote-container').style.backgroundImage = `url(${imageUrl})`;
+      document.getElementById('nature-image').src = imageUrl; // Set the source of the image
+
+      // Display the quotes on the overlay
+      document.querySelector(`#quote-container-1 .quote-overlay`).style.display = 'block';
+    }
+
+    // Initial quote fetch on page load
+    fetchQuotes();
+  </script>
+</body>
+</html>
